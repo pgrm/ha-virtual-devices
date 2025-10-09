@@ -9,8 +9,7 @@
       "groupSlug": "all-minor-patch",
       "automerge": true,
       "automergeType": "pr",
-      "automergeStrategy": "squash",
-      "matchPackageNames": ["*"]
+      "automergeStrategy": "squash"
     },
     {
       "matchUpdateTypes": ["major"],
