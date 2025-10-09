@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "ha-virtual-devices"
+version = "0.1.0"
+description = "Home Assistant custom integration for virtual devices."
+authors = ["Peter Grman <peter.grman@gmail.com>"]
+readme = "README.md"
+packages = [{include = "custom_components/virtual_devices"}]
+
+[tool.poetry.dependencies]
+python = ">=3.13.2,<3.14"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.5.5"
+pytest = "^8.4.2"
+pytest-cov = "^7.0.0"
+homeassistant = "~2025.10.0"
+homeassistant-stubs = "~2025.10.0"
+pytest-asyncio = "*"
+pytest-homeassistant-custom-component = "^0.13.286"
+
+[tool.ruff]
+line-length = 88
+target-version = "py313"
+
+[tool.pytest.ini_options]
+testpaths = [
+    "tests",
+]
+asyncio_mode = "auto"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

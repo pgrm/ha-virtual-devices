@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        id: setup-python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.2'
+
+      - name: Install and configure Poetry
+        uses: snok/install-poetry@v1
+        with:
+          virtualenvs-in-project: true
+
+      - name: Cache Poetry dependencies
+        uses: actions/cache@v4
+        with:
+          path: .venv
+          key: ${{ runner.os }}-poetry-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-poetry-${{ steps.setup-python.outputs.python-version }}-
+            ${{ runner.os }}-poetry-
+
+      - name: Install dependencies
+        run: poetry install --no-interaction
+
+      - name: Run CI checks
+        run: make ci
