@@ -25,22 +25,25 @@ The initial MVP is the **Virtual Step-Dimmer**, which will expose a Shelly-contr
 - **Dependency Management:** Poetry
 - **Testing Framework:** `pytest`
 - **Linting & Formatting:** `ruff`
+- **Task Runner:** Makefile
 - **CI/CD:** GitHub Actions
 
 ## Development Workflow
 
-The core integration code is located in the `custom_components/virtual_devices/` directory.
+The core integration code is located in the `custom_components/virtual_devices/` directory. Tests will be located in a top-level `tests/` directory.
 
-- **`__init__.py`**: Main entry point for the integration setup.
-- **`config_flow.py`**: Handles UI-based configuration.
-- **`light.py`**: (and other platforms like `sensor.py`, etc. in the future) Defines the entities.
-- **`const.py`**: Stores constants like the domain name.
-- Tests will be located in a top-level `tests/` directory.
+All development tasks should be run using the `Makefile` targets, which ensures consistency between local development and the CI environment.
+
+- **`make setup`**: Sets up the development environment by installing all dependencies with Poetry.
+- **`make format`**: Formats all code using `ruff format`.
+- **`make lint`**: Lints all code using `ruff check`.
+- **`make test`**: Runs the `pytest` test suite and checks for 100% code coverage.
+- **`make ci`**: Runs all non-modifying CI checks (`format-check`, `lint-check`, `test`). This is the command used by the GitHub Actions workflow.
 
 ### Conventions
 
 - **Testing:** All new logic (state machines, control functions) must be accompanied by unit tests. The goal is 100% test coverage for the core logic.
-- **Linting and Formatting:** All Python code must be formatted with `ruff format` and pass the linter checks defined in `pyproject.toml`.
+- **Linting and Formatting:** All Python code must pass the checks run by `make ci`. This ensures code is formatted and free of linter errors before committing.
 - **Code Quality:** Adhere to Home Assistant developer best practices for custom integrations.
 
 ## How you can help
