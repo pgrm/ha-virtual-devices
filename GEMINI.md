@@ -20,7 +20,7 @@ The initial MVP is the **Virtual Step-Dimmer**, which will expose a Shelly-contr
 ## Tech Stack and Tools
 
 - **Platform:** Home Assistant Custom Integration
-- **Language:** Python 3.12
+- **Language:** Python >=3.13.2,<3.14
 - **Distribution:** HACS (Home Assistant Community Store)
 - **Dependency Management:** Poetry
 - **Testing Framework:** `pytest`
