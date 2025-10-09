@@ -7,19 +7,20 @@ readme = "README.md"
 packages = [{include = "custom_components/virtual_devices"}]
 
 [tool.poetry.dependencies]
-python = ">=3.12,<3.14"
+python = ">=3.13.2,<3.14"
+pytest-homeassistant-custom-component = "^0.13.286"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "*"
 pytest = "*"
 pytest-cov = "*"
 homeassistant = "*"
-homeassistant-stubs = "~2025.1.0"
+homeassistant-stubs = "~2025.10.0"
 pytest-asyncio = "*"
 
 [tool.ruff]
 line-length = 88
-target-version = "py312"
+target-version = "py313"
 
 [tool.pytest.ini_options]
 testpaths = [

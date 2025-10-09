@@ -43,6 +43,7 @@ All development tasks should be run using the `Makefile` targets, which ensures 
 ### Conventions
 
 - **Test-Driven:** All new logic must be accompanied by unit tests. The goal is 100% test coverage for the core logic. **Do not suggest or generate implementation code without also generating the corresponding tests.**
+- **No TODOs:** Do not leave `TODO` comments in the code. If you encounter an issue that you cannot resolve, you should ask for help.
 - **Linting and Formatting:** All Python code must pass the checks run by `make ci`. This ensures code is formatted and free of linter errors before committing.
 - **Code Quality:** Adhere to Home Assistant developer best practices for custom integrations.
 
