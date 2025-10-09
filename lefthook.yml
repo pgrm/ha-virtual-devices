@@ -1,6 +1,9 @@
 pre-commit:
+  parallel: true
   commands:
     format-check:
-      run: poetry run ruff format --check .
+      glob: "*.py"
+      run: poetry run ruff format --check {staged_files}
     lint:
-      run: poetry run ruff check .
+      glob: "*.py"
+      run: poetry run ruff check {staged_files}
