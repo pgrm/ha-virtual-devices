@@ -2,7 +2,6 @@
 
 from unittest.mock import AsyncMock, patch
 
-from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from pytest_homeassistant_custom_component.common import MockConfigEntry
 

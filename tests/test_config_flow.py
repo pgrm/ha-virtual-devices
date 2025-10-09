@@ -2,7 +2,6 @@
 
 from unittest.mock import patch
 
-import pytest
 from homeassistant import config_entries, setup
 from homeassistant.core import HomeAssistant
 from homeassistant.data_entry_flow import FlowResultType
