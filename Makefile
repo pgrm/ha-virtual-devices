@@ -2,6 +2,7 @@
 
 setup:
 	poetry install
+	poetry run lefthook install
 
 format:
 	poetry run ruff format .

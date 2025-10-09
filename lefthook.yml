@@ -1,0 +1,6 @@
+pre-commit:
+  commands:
+    format-check:
+      run: poetry run ruff format --check .
+    lint:
+      run: poetry run ruff check .
