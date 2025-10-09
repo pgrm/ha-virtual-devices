@@ -22,7 +22,6 @@ async def test_setup_and_unload_entry(hass: HomeAssistant):
         "async_setup_platforms",
         new_callable=AsyncMock,
         return_value=True,
-        create=True,
     ) as mock_setup_platforms:
         assert await async_setup_entry(hass, entry) is True
         mock_setup_platforms.assert_called_once_with(entry, PLATFORMS)
