@@ -1,0 +1,19 @@
+{
+  "name": "Home Assistant Dev",
+  "image": "ghcr.io/home-assistant/devcontainer:stable",
+  "mounts": [
+    "source=${localWorkspaceFolder}/custom_components/virtual_devices,target=/workspaces/core/config/custom_components/virtual_devices,type=bind,consistency=cached"
+  ],
+  "forwardPorts": [
+    8123
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  },
+  "postCreateCommand": "scripts/setup"
+}
