@@ -22,7 +22,7 @@ The project is currently in the initial setup phase. The roadmap is structured a
 
   - [x] Define MVP and technical stack (`PROJECT_BLUEPRINT.md`).
   - [x] Set up repository and license.
-  - [ ] Set up development tooling (`Poetry`, `Makefile`, `ruff`).
+  - [x] Set up development tooling (`Poetry`, `Makefile`, `ruff`).
   - [ ] Configure CI/CD pipeline with GitHub Actions.
   - [ ] Configure VS Code Dev Container for local development.
 
