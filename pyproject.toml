@@ -2,7 +2,7 @@
 name = "ha-virtual-devices"
 version = "0.1.0"
 description = "Home Assistant custom integration for virtual devices."
-authors = ["Your Name <you@example.com>"]
+authors = ["Peter Grman <peter.grman@gmail.com>"]
 readme = "README.md"
 packages = [{include = "custom_components/virtual_devices"}]
 
