@@ -46,6 +46,7 @@ All development tasks should be run using the `Makefile` targets, which ensures 
 - **No TODOs:** Do not leave `TODO` comments in the code. If you encounter an issue that you cannot resolve, you should ask for help.
 - **Linting and Formatting:** All Python code must pass the checks run by `make ci`. This ensures code is formatted and free of linter errors before committing.
 - **Code Quality:** Adhere to Home Assistant developer best practices for custom integrations.
+- **Committing:** After making code changes, you must ask for approval before committing. Propose a clear and concise commit message, but wait for the user to agree before running `git commit` or `git push`.
 
 ## How you can help
 
