@@ -13,7 +13,7 @@ def auto_enable_custom_integrations(enable_custom_integrations):
     yield
 
 
-@pytest.fixture(autouse=True)
+@pytest.fixture()
 def mock_setup_entry():
     """Mock setting up a config entry."""
     with patch(

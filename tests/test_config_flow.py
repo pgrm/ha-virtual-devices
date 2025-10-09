@@ -9,7 +9,7 @@ from homeassistant.data_entry_flow import FlowResultType
 from custom_components.virtual_devices.const import DOMAIN
 
 
-async def test_form(hass: HomeAssistant) -> None:
+async def test_form(hass: HomeAssistant, mock_setup_entry) -> None:
     """Test we get the form."""
     await setup.async_setup_component(hass, "persistent_notification", {})
 
