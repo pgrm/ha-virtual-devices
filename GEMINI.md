@@ -42,7 +42,7 @@ All development tasks should be run using the `Makefile` targets, which ensures 
 
 ### Conventions
 
-- **Testing:** All new logic (state machines, control functions) must be accompanied by unit tests. The goal is 100% test coverage for the core logic.
+- **Test-Driven:** All new logic must be accompanied by unit tests. The goal is 100% test coverage for the core logic. **Do not suggest or generate implementation code without also generating the corresponding tests.**
 - **Linting and Formatting:** All Python code must pass the checks run by `make ci`. This ensures code is formatted and free of linter errors before committing.
 - **Code Quality:** Adhere to Home Assistant developer best practices for custom integrations.
 
@@ -50,6 +50,6 @@ All development tasks should be run using the `Makefile` targets, which ensures 
 
 - **Boilerplate Generation:** Help generate the initial files and structure for the custom integration and its components (config flow, platforms, entities).
 - **Logic Implementation:** Help write the core Python logic for the state machines that control the virtual devices.
-- **Test Generation:** For any new code we add, generate comprehensive unit tests using `pytest` and `pytest-mock`.
+- **Test Generation:** For any new code we add, **you must generate comprehensive unit tests using `pytest` and `pytest-mock`**. All code contributions must be testable and fully tested.
 - **Documentation:** Help write clear docstrings and update the `README.md`.
 - **Refactoring:** Suggest improvements to make the code more efficient, readable, and maintainable.
