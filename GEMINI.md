@@ -14,7 +14,7 @@ The initial MVP is the **Virtual Step-Dimmer**, which will expose a Shelly-contr
 
 - **Abstraction:** Hide complex hardware logic (like multi-press toggling and power monitoring) behind simple, standard Home Assistant entities.
 - **UI-First Configuration:** All virtual devices must be configurable via the Home Assistant UI (Config Flow). No YAML configuration should be required for defining devices.
-- **Testability:** The core logic for each virtual device must be robust and have 100% test coverage using `pytest`. Tests should be able to run independently of a live Home Assistant instance.
+- **Testability:** The core logic for each virtual device must be robust and have 90% test coverage using `pytest`. Tests should be able to run independently of a live Home Assistant instance.
 - **Ease of Use:** The integration should be simple to install (via HACS) and configure for the end-user.
 
 ## Tech Stack and Tools

@@ -13,6 +13,6 @@ lint:
 	poetry run ruff check .
 
 test:
-	poetry run pytest --cov=custom_components.virtual_devices tests/
+	poetry run pytest --cov=custom_components.virtual_devices --cov-fail-under=90 tests/
 
 ci: format-check lint test
