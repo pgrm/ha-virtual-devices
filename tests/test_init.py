@@ -19,7 +19,7 @@ async def test_setup_and_unload_entry(hass: HomeAssistant):
 
     with patch.object(
         hass.config_entries,
-        "async_setup_platforms",
+        "async_forward_entry_setups",
         new_callable=AsyncMock,
         return_value=True,
     ) as mock_setup_platforms:
@@ -28,7 +28,7 @@ async def test_setup_and_unload_entry(hass: HomeAssistant):
 
     with patch.object(
         hass.config_entries,
-        "async_unload_platforms",
+        "async_forward_entry_unload",
         new_callable=AsyncMock,
         return_value=True,
     ) as mock_unload_platforms:
