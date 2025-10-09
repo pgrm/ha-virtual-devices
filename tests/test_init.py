@@ -5,7 +5,11 @@ from unittest.mock import AsyncMock, patch
 from homeassistant.core import HomeAssistant
 from pytest_homeassistant_custom_component.common import MockConfigEntry
 
-from custom_components.virtual_devices import async_setup_entry, async_unload_entry
+from custom_components.virtual_devices import (
+    PLATFORMS,
+    async_setup_entry,
+    async_unload_entry,
+)
 from custom_components.virtual_devices.const import DOMAIN
 
 
@@ -21,7 +25,7 @@ async def test_setup_and_unload_entry(hass: HomeAssistant):
         create=True,
     ) as mock_setup_platforms:
         assert await async_setup_entry(hass, entry) is True
-        mock_setup_platforms.assert_called_once()
+        mock_setup_platforms.assert_called_once_with(entry, PLATFORMS)
 
     with patch.object(
         hass.config_entries,
@@ -30,4 +34,4 @@ async def test_setup_and_unload_entry(hass: HomeAssistant):
         return_value=True,
     ) as mock_unload_platforms:
         assert await async_unload_entry(hass, entry) is True
-        mock_unload_platforms.assert_called_once()
+        mock_unload_platforms.assert_called_once_with(entry, PLATFORMS)
