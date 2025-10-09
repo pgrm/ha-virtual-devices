@@ -8,7 +8,6 @@ packages = [{include = "custom_components/virtual_devices"}]
 
 [tool.poetry.dependencies]
 python = ">=3.13.2,<3.14"
-pytest-homeassistant-custom-component = "^0.13.286"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.5.5"
@@ -17,6 +16,7 @@ pytest-cov = "^7.0.0"
 homeassistant = "~2025.10.0"
 homeassistant-stubs = "~2025.10.0"
 pytest-asyncio = "*"
+pytest-homeassistant-custom-component = "^0.13.286"
 
 [tool.ruff]
 line-length = 88
