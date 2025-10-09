@@ -14,7 +14,7 @@ The initial MVP is the **Virtual Step-Dimmer**, which will expose a Shelly-contr
 
 - **Abstraction:** Hide complex hardware logic (like multi-press toggling and power monitoring) behind simple, standard Home Assistant entities.
 - **UI-First Configuration:** All virtual devices must be configurable via the Home Assistant UI (Config Flow). No YAML configuration should be required for defining devices.
-- **Testability:** The core logic for each virtual device must be robust and have at least 90% test coverage using `pytest`. Tests should be able to run independently of a live Home Assistant instance.
+- **Testability:** The core logic for each virtual device must be robust and highly testable, with a minimum of 90% test coverage enforced by the CI pipeline. Tests should be able to run independently of a live Home Assistant instance.
 - **Ease of Use:** The integration should be simple to install (via HACS) and configure for the end-user.
 
 ## Tech Stack and Tools
@@ -42,7 +42,7 @@ All development tasks should be run using the `Makefile` targets, which ensures 
 
 ### Conventions
 
-- **Test-Driven:** All new logic must be accompanied by unit tests. The goal is 100% test coverage for the core logic. **Do not suggest or generate implementation code without also generating the corresponding tests.**
+- **Test-Driven:** All new logic must be accompanied by unit tests. While the CI enforces a 90% minimum, the aspirational goal is 100% test coverage for the core logic. **Do not suggest or generate implementation code without also generating the corresponding tests.**
 - **No TODOs:** Do not leave `TODO` comments in the code. If you encounter an issue that you cannot resolve, you should ask for help.
 - **Linting and Formatting:** All Python code must pass the checks run by `make ci`. This ensures code is formatted and free of linter errors before committing.
 - **Code Quality:** Adhere to Home Assistant developer best practices for custom integrations.
