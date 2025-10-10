@@ -17,5 +17,5 @@
       ]
     }
   },
-  "postCreateCommand": "mkdir -p /config/custom_components && ln -s /workspaces/ha-virtual-devices/custom_components/virtual_devices /config/custom_components/virtual_devices && /workspaces/core/scripts/setup"
+  "postCreateCommand": "mkdir -p /config/custom_components && ln -sf /workspaces/ha-virtual-devices/custom_components/virtual_devices /config/custom_components/virtual_devices && cd /workspaces/ha-virtual-devices && make setup"
 }
