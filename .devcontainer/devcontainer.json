@@ -1,0 +1,22 @@
+{
+  "name": "Home Assistant Dev",
+  "image": "ghcr.io/home-assistant/devcontainer:stable",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/ha-virtual-devices,type=bind",
+  "workspaceFolder": "/workspaces/ha-virtual-devices",
+  "forwardPorts": [
+    8123
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "charliermarsh.ruff",
+        "esbenp.prettier-vscode",
+        "redhat.vscode-yaml",
+        "keesschollaart.vscode-home-assistant"
+      ]
+    }
+  },
+  "postCreateCommand": "mkdir -p /config/custom_components && ln -sf ${containerWorkspaceFolder}/custom_components/virtual_devices /config/custom_components/virtual_devices && make setup"
+}
