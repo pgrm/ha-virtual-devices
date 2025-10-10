@@ -18,6 +18,7 @@ homeassistant = "~2025.10.0"
 homeassistant-stubs = "~2025.10.0"
 pytest-asyncio = "*"
 pytest-homeassistant-custom-component = "^0.13.286"
+hypothesis = "^6.140.3"
 
 [tool.ruff]
 line-length = 88
