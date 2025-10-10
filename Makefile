@@ -17,4 +17,7 @@ lint:
 test:
 	poetry run pytest --cov=custom_components.virtual_devices --cov-branch --cov-fail-under=90 tests/
 
-ci: format-check lint test
+json-check:
+	find . -name "*.json" -print0 | xargs -0 -I {} python -m json.tool {} >/dev/null
+
+ci: format-check lint test json-check

@@ -13,7 +13,8 @@
         "ms-python.vscode-pylance",
         "charliermarsh.ruff",
         "esbenp.prettier-vscode",
-        "redhat.vscode-yaml"
+        "redhat.vscode-yaml",
+        "keesschollaart.vscode-home-assistant"
       ]
     }
   },
