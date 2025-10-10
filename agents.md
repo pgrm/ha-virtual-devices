@@ -4,7 +4,7 @@ This document provides instructions for AI agents like Jules on how to set up an
 
 ## Environment Setup
 
-This project requires Python 3.13. The following script must be executed to prepare the environment before installing dependencies.
+This project requires Python 3.13.2 or newer (as defined in `pyproject.toml`). The following script must be executed to prepare the environment before installing dependencies.
 
 ```bash
 # Install Python 3.13.2 using the preinstalled pyenv
