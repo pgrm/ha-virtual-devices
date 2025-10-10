@@ -9,6 +9,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      checks: write
+      pull-requests: write
     steps:
       - name: Check out code
         uses: actions/checkout@v5
@@ -17,7 +21,7 @@ jobs:
         id: setup-python
         uses: actions/setup-python@v6
         with:
-          python-version: '3.13.7'
+          python-version: "3.13"
 
       - name: Install and configure Poetry
         uses: snok/install-poetry@v1
@@ -38,3 +42,11 @@ jobs:
 
       - name: Run CI checks
         run: make ci
+
+      - name: Upload coverage to Codecov
+        if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository)
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: true
+          files: ./coverage.xml
