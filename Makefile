@@ -1,7 +1,10 @@
-.PHONY: setup format format-check lint test ci
+.PHONY: all setup format format-check lint test ci
+
+all: setup format lint test
 
 setup:
-	poetry install
+	poetry install --with dev
+	poetry run lefthook install
 
 format:
 	poetry run ruff format .
