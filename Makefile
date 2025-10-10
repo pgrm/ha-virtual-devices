@@ -3,7 +3,7 @@
 all: setup format lint test
 
 setup:
-	poetry install
+	poetry install --with dev
 	poetry run lefthook install
 
 format:
