@@ -14,7 +14,7 @@ pyenv install 3.13.2
 pyenv local 3.13.2
 
 # Tell Poetry to use the newly installed Python version
-poetry env use python3.13
+poetry env use $(pyenv which python)
 
 # Install dependencies using the Makefile target
 make setup
