@@ -1,4 +1,6 @@
-.PHONY: setup format format-check lint test ci
+.PHONY: all setup format format-check lint test ci
+
+all: setup format lint test
 
 setup:
 	poetry install
