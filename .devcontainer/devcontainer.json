@@ -1,6 +1,6 @@
 {
   "name": "Home Assistant Dev",
-  "image": "ghcr.io/home-assistant/devcontainer:stable",
+  "image": "ghcr.io/home-assistant/devcontainer:addons",
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/ha-virtual-devices,type=bind",
   "workspaceFolder": "/workspaces/ha-virtual-devices",
   "forwardPorts": [
