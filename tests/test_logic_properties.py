@@ -7,7 +7,7 @@ from custom_components.virtual_devices.const import LIGHT_BRIGHTNESS_MAX
 # Placeholder for the future StepDimmerLogic class
 class StepDimmerLogic:
     def __init__(self, initial_brightness: int = 0) -> None:
-        self._brightness = initial_brightness
+        self.set_brightness(initial_brightness)
 
     @property
     def brightness(self) -> int:
@@ -23,5 +23,6 @@ def test_brightness_is_always_within_bounds(
 ) -> None:
     """Test that brightness stays within the 0-255 range."""
     logic = StepDimmerLogic(initial_brightness)
+    assert 0 <= logic.brightness <= LIGHT_BRIGHTNESS_MAX
     logic.set_brightness(new_brightness)
     assert 0 <= logic.brightness <= LIGHT_BRIGHTNESS_MAX
