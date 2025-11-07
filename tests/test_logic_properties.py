@@ -17,10 +17,7 @@ class StepDimmerLogic:
         self._brightness = max(0, min(LIGHT_BRIGHTNESS_MAX, value))
 
 
-@given(
-    initial_brightness=integers(min_value=0, max_value=LIGHT_BRIGHTNESS_MAX),
-    new_brightness=integers(min_value=0, max_value=LIGHT_BRIGHTNESS_MAX),
-)
+@given(initial_brightness=integers(), new_brightness=integers())
 def test_brightness_is_always_within_bounds(
     initial_brightness: int, new_brightness: int
 ) -> None:
