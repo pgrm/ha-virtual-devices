@@ -3,6 +3,11 @@
   "extends": ["config:recommended"],
   "packageRules": [
     {
+      "matchPackageNames": ["python"],
+      "groupName": "Python runtime",
+      "automerge": true
+    },
+    {
       "matchUpdateTypes": ["minor", "patch"],
       "minimumReleaseAge": "7 days",
       "groupName": "all non-major dependencies",
@@ -14,7 +19,7 @@
     {
       "matchUpdateTypes": ["major"],
       "minimumReleaseAge": "21 days",
-      "automerge": false
+      "automerge": true
     }
   ]
 }
