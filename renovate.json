@@ -4,7 +4,8 @@
   "packageRules": [
     {
       "matchPackageNames": ["python"],
-      "enabled": false
+      "groupName": "Python runtime",
+      "automerge": true
     },
     {
       "matchUpdateTypes": ["minor", "patch"],
@@ -18,7 +19,7 @@
     {
       "matchUpdateTypes": ["major"],
       "minimumReleaseAge": "21 days",
-      "automerge": false
+      "automerge": true
     }
   ]
 }
