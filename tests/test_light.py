@@ -9,7 +9,7 @@ from custom_components.virtual_devices.const import DOMAIN
 from custom_components.virtual_devices.light import async_setup_entry
 
 
-async def test_setup_entry_no_entities(hass: HomeAssistant):
+async def test_setup_entry_no_entities(hass: HomeAssistant) -> None:
     """Test that no entities are added."""
     config_entry = MockConfigEntry(domain=DOMAIN, data={})
     async_add_entities = AsyncMock()
