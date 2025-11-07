@@ -5,10 +5,13 @@
     {
       "matchPackageNames": ["python"],
       "groupName": "Python runtime",
-      "automerge": true
+      "automerge": true,
+      "automergeType": "pr",
+      "automergeStrategy": "squash"
     },
     {
       "matchUpdateTypes": ["minor", "patch"],
+      "excludePackageNames": ["python"],
       "minimumReleaseAge": "7 days",
       "groupName": "all non-major dependencies",
       "groupSlug": "all-minor-patch",
@@ -18,8 +21,11 @@
     },
     {
       "matchUpdateTypes": ["major"],
+      "excludePackageNames": ["python"],
       "minimumReleaseAge": "21 days",
-      "automerge": true
+      "automerge": true,
+      "automergeType": "pr",
+      "automergeStrategy": "squash"
     }
   ]
 }
