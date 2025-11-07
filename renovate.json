@@ -3,6 +3,10 @@
   "extends": ["config:recommended"],
   "packageRules": [
     {
+      "matchPackageNames": ["python"],
+      "enabled": false
+    },
+    {
       "matchUpdateTypes": ["minor", "patch"],
       "minimumReleaseAge": "7 days",
       "groupName": "all non-major dependencies",
