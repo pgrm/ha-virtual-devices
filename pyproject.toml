@@ -10,7 +10,7 @@ packages = [{include = "custom_components/virtual_devices"}]
 python = ">=3.13.2,<3.14"
 
 [tool.poetry.group.dev.dependencies]
-lefthook = "^1.13.6"
+lefthook = "^2.0.0"
 ruff = "^0.14.0"
 pytest = "^8.4.2"
 pytest-cov = "^7.0.0"
