@@ -18,10 +18,31 @@ homeassistant = "~2025.10.0"
 homeassistant-stubs = "~2025.10.0"
 pytest-asyncio = "*"
 pytest-homeassistant-custom-component = "^0.13.286"
+hypothesis = "^6.140.3"
 
 [tool.ruff]
 line-length = 88
 target-version = "py313"
+
+[tool.ruff.lint]
+# Add "ANN", "D", and "PL" to the list
+select = [
+    "E",  # pycodestyle errors
+    "F",  # Pyflakes
+    "I",  # isort
+    "UP", # pyupgrade
+    "B",  # flake8-bugbear
+    "C90",# mccabe complexity
+    "SIM",# flake8-simplify
+    "PERF",# perflint
+    "ANN",# flake8-annotations
+    "PL", # Pylint
+    # "D",  # flake8-docstrings
+]
+
+# We also need to configure the docstring style
+[tool.ruff.lint.pydocstyle]
+convention = "google"
 
 [tool.pytest.ini_options]
 testpaths = [

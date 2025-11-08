@@ -13,7 +13,7 @@ from custom_components.virtual_devices import (
 from custom_components.virtual_devices.const import DOMAIN
 
 
-async def test_setup_and_unload_entry(hass: HomeAssistant):
+async def test_setup_and_unload_entry(hass: HomeAssistant) -> None:
     """Test that the integration can be set up and unloaded."""
     entry = MockConfigEntry(domain=DOMAIN, data={}, entry_id="test")
 
