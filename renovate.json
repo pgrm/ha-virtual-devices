@@ -3,7 +3,15 @@
   "extends": ["config:recommended"],
   "packageRules": [
     {
+      "matchPackageNames": ["python"],
+      "groupName": "Python runtime",
+      "automerge": true,
+      "automergeType": "pr",
+      "automergeStrategy": "squash"
+    },
+    {
       "matchUpdateTypes": ["minor", "patch"],
+      "excludePackageNames": ["python"],
       "minimumReleaseAge": "7 days",
       "groupName": "all non-major dependencies",
       "groupSlug": "all-minor-patch",
@@ -13,8 +21,11 @@
     },
     {
       "matchUpdateTypes": ["major"],
+      "excludePackageNames": ["python"],
       "minimumReleaseAge": "21 days",
-      "automerge": false
+      "automerge": true,
+      "automergeType": "pr",
+      "automergeStrategy": "squash"
     }
   ]
 }

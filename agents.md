@@ -28,3 +28,13 @@ After the environment is set up, use the `Makefile` for all common tasks:
 - `make lint`: Run linter checks.
 - `make test`: Run the test suite.
 - `make ci`: Run all CI checks.
+
+## Pre-submit Checklist
+
+Before submitting your changes, please run the following command to ensure all checks pass:
+
+```bash
+make ci
+```
+
+This will run formatting, linting, and tests, and help catch issues before they reach the CI server.

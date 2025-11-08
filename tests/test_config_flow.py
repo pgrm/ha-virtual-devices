@@ -45,7 +45,7 @@ async def _create_config_entry(
     assert len(mock_setup.mock_calls) == 1
 
 
-async def test_form_multiple_entries(hass: HomeAssistant, mock_setup_entry) -> None:
+async def test_form_multiple_entries(hass: HomeAssistant) -> None:
     """Test that multiple config entries can be created."""
     await setup.async_setup_component(hass, "persistent_notification", {})
     hass.states.async_set("switch.test_switch", "on")
