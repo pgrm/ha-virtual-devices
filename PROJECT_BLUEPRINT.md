@@ -19,7 +19,7 @@ A technically proficient Home Assistant user who wants to abstract away the comp
 * **Room Scene Controller:** The higher-level concept of a "Room" entity that manages scenes and multiple lights is the clear goal for V2, once the foundational device abstraction is complete.
 * The Hallway Switch.
 
-### Proposed. Tech Stack
+### Proposed Tech Stack
 * **Platform:** Home Assistant Custom Integration.
 * **Distribution:** HACS (Home Assistant Community Store).
 * **Language:** Python 3.13.
