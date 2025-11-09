@@ -1,6 +1,7 @@
 """Test the light platform for Virtual Step-Dimmer."""
 
 from typing import Any
+from unittest.mock import MagicMock, patch
 
 import pytest
 from homeassistant.core import HomeAssistant
@@ -36,62 +37,57 @@ async def setup_integration(
     return config_entry
 
 
+@patch(
+    "custom_components.virtual_step_dimmer.light.StepDimmerController",
+    autospec=True,
+)
 @pytest.mark.asyncio
-async def test_light_entity_setup(
-    hass: HomeAssistant, config_entry_data: dict[str, Any]
-) -> None:
-    """Test the setup of the light entity."""
-    await setup_integration(hass, config_entry_data)
-    entity_id = "light.virtual_step_dimmer"
-    state = hass.states.get(entity_id)
-    assert state is not None
-    assert state.name == "Virtual Step-Dimmer"
-
-
-@pytest.mark.asyncio
-async def test_turn_on(
+async def test_light_delegates_to_controller(
+    mock_controller_class: MagicMock,
     hass: HomeAssistant,
     config_entry_data: dict[str, Any],
-    service_calls,
 ) -> None:
-    """Test turning the light on."""
+    """Test that the light entity correctly delegates calls to the controller."""
+    mock_controller = mock_controller_class.return_value
     await setup_integration(hass, config_entry_data)
     entity_id = "light.virtual_step_dimmer"
 
-    # Manually set the current power for the test
-    hass.states.async_set("sensor.test_sensor", "10")
-    await hass.async_block_till_done()
-
-    # Target brightness for step 3 (50W)
     await hass.services.async_call(
-        "light",
-        "turn_on",
-        {"entity_id": entity_id, "brightness": 191},
-        blocking=True,
+        "light", "turn_on", {"entity_id": entity_id, "brightness": 128}, blocking=True
     )
-    await hass.async_block_till_done()
-
-    switch_calls = [call for call in service_calls if call.domain == "switch"]
-    # From step 1 to step 3 needs 2 toggles
-    assert len(switch_calls) == 2
-    assert switch_calls[0].service == "toggle"
-
-
-@pytest.mark.asyncio
-async def test_turn_off(
-    hass: HomeAssistant,
-    config_entry_data: dict[str, Any],
-    service_calls,
-) -> None:
-    """Test turning the light off."""
-    await setup_integration(hass, config_entry_data)
-    entity_id = "light.virtual_step_dimmer"
+    mock_controller.set_target_brightness.assert_called_with(128)
 
     await hass.services.async_call(
         "light", "turn_off", {"entity_id": entity_id}, blocking=True
     )
-    await hass.async_block_till_done()
+    mock_controller.set_target_brightness.assert_called_with(0)
 
-    switch_calls = [call for call in service_calls if call.domain == "switch"]
-    assert len(switch_calls) == 1
-    assert switch_calls[0].service == "turn_off"
+
+@patch(
+    "custom_components.virtual_step_dimmer.light.StepDimmerController",
+    autospec=True,
+)
+@pytest.mark.asyncio
+async def test_sensor_and_cancellation(
+    mock_controller_class: MagicMock,
+    hass: HomeAssistant,
+    config_entry_data: dict[str, Any],
+) -> None:
+    """Test sensor listener and cancellation path."""
+    mock_controller = mock_controller_class.return_value
+    config_entry = await setup_integration(hass, config_entry_data)
+
+    # Test sensor update
+    hass.states.async_set("sensor.test_sensor", "50")
+    await hass.async_block_till_done()
+    mock_controller.handle_sensor_update.assert_called_with(50.0)
+
+    # Test invalid sensor update
+    hass.states.async_set("sensor.test_sensor", "invalid")
+    await hass.async_block_till_done()
+    # Assert it was not called again
+    mock_controller.handle_sensor_update.assert_called_once()
+
+    # Test cancellation
+    await hass.config_entries.async_unload(config_entry.entry_id)
+    mock_controller.cancel.assert_called_once()

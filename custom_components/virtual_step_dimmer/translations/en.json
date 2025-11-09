@@ -15,6 +15,14 @@
         "data": {
           "brightness_steps": "Brightness Steps (W)"
         }
+      },
+      "advanced": {
+        "title": "Advanced Options",
+        "description": "Fine-tune the timing for your specific hardware. In most cases, the defaults are fine.",
+        "data": {
+          "toggle_delay_sec": "Delay between toggles (seconds)",
+          "settling_delay_sec": "Delay for sensor to update (seconds)"
+        }
       }
     },
     "error": {

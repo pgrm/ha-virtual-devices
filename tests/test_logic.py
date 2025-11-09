@@ -65,14 +65,20 @@ def test_brightness_to_step(
     [
         # No change
         (10, 63, 0),  # Step 1 to Step 1
-        (50, 191, 0),  # Step 3 to Step 3
+        # From OFF
+        (0, 63, 1),  # Off to Step 1 -> 1 toggle
+        (0, 127, 3),  # Off to Step 2 -> 3 toggles
+        (0, 255, 7),  # Off to Step 4 -> 7 toggles
         # Move up
-        (10, 127, 1),  # Step 1 to Step 2
-        (10, 255, 3),  # Step 1 to Step 4
-        (0, 127, 2),  # Off to Step 2
+        (10, 127, 2),  # Step 1 to Step 2 -> 2 toggles
+        (10, 255, 6),  # Step 1 to Step 4 -> 6 toggles
         # Move down (cycle)
-        (100, 63, 1),  # Step 4 to Step 1
-        (50, 63, 2),  # Step 3 to Step 1
+        (100, 63, 2),  # Step 4 to Step 1 -> 2 toggles
+        (50, 63, 4),  # Step 3 to Step 1 -> 4 toggles
+        # Turn off
+        (10, 0, 1),  # Step 1 to Off -> 1 toggle
+        (100, 0, 1),  # Step 4 to Off -> 1 toggle
+        (0, 0, 0),  # Off to Off -> 0 toggles
     ],
 )
 def test_get_toggles_for_brightness(

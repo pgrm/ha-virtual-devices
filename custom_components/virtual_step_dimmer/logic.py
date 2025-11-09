@@ -31,15 +31,16 @@ class StepDimmerLogic:
         brightness = max(0, min(brightness, LIGHT_BRIGHTNESS_MAX))
         return round((brightness / LIGHT_BRIGHTNESS_MAX) * self._num_steps)
 
+    def _step_to_brightness(self, step: int) -> int:
+        """Convert a step to a brightness value (0-255)."""
+        if step == 0:
+            return 0
+        return int((step / self._num_steps) * LIGHT_BRIGHTNESS_MAX)
+
     def get_toggles_for_brightness(
         self, current_power: float, target_brightness: int
     ) -> int:
-        """
-        Calculate the number of toggles to reach the target brightness.
-
-        Returns:
-            The number of toggles required.
-        """
+        """Calculate the number of toggles to reach the target brightness."""
         current_step = self._power_to_step(current_power)
         target_step = self._brightness_to_step(target_brightness)
 
@@ -48,10 +49,17 @@ class StepDimmerLogic:
         if target_step == current_step:
             return 0
 
-        # The number of toggles is the difference in steps.
-        # The dimmer cycles through steps, so we can calculate the delta.
+        if target_step == 0:
+            # Turning off requires one toggle if the light is on.
+            return 1 if current_step > 0 else 0
+
+        if current_step == 0:
+            # From OFF, it takes (2 * n - 1) toggles to reach step n
+            return (target_step * 2) - 1
+
+        # If both on, it takes 2 toggles to move one step
         if target_step > current_step:
-            return target_step - current_step
-        else:
-            # Cycle through the remaining steps and back to the target
-            return self._num_steps - current_step + target_step
+            return (target_step - current_step) * 2
+
+        # Cycling through
+        return (self._num_steps - current_step + target_step) * 2
