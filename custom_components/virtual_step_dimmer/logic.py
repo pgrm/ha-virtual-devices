@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import math
 
 from .const import LIGHT_BRIGHTNESS_MAX
 
@@ -29,7 +30,9 @@ class StepDimmerLogic:
     def _brightness_to_step(self, brightness: int) -> int:
         """Convert a brightness value (0-255) to a step."""
         brightness = max(0, min(brightness, LIGHT_BRIGHTNESS_MAX))
-        return round((brightness / LIGHT_BRIGHTNESS_MAX) * self._num_steps)
+        if brightness == 0:
+            return 0
+        return int(math.ceil((brightness / LIGHT_BRIGHTNESS_MAX) * self._num_steps))
 
     def _step_to_brightness(self, step: int) -> int:
         """Convert a step to a brightness value (0-255)."""

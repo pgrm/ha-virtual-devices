@@ -45,7 +45,7 @@ def test_power_to_step(
     "brightness, expected_step",
     [
         (0, 0),
-        (1, 0),
+        (1, 1),
         (63, 1),  # ~25%
         (127, 2),  # ~50%
         (191, 3),  # ~75%

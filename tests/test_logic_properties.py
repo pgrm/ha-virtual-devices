@@ -10,16 +10,66 @@ from custom_components.virtual_step_dimmer.logic import StepDimmerLogic
     brightness_steps=st.lists(
         st.integers(min_value=1), min_size=1, max_size=10, unique=True
     ).map(sorted),
-    current_power=st.integers(),
-    target_brightness=st.integers(),
+    current_power=st.integers(max_value=0),
+    target_brightness=st.integers(min_value=1),
 )
-def test_toggles_are_always_within_bounds(
+def test_toggles_from_zero_are_always_within_bounds(
+    brightness_steps: list[int], current_power: int, target_brightness: int
+) -> None:
+    """Test that the number of toggles is always valid."""
+    logic = StepDimmerLogic(brightness_steps)
+    toggles = logic.get_toggles_for_brightness(current_power, target_brightness)
+    assert toggles >= 1
+    assert toggles % 2 == 1
+
+
+@given(
+    brightness_steps=st.lists(
+        st.integers(min_value=1), min_size=1, max_size=10, unique=True
+    ).map(sorted),
+    current_power=st.integers(max_value=0),
+    target_brightness=st.integers(max_value=0),
+)
+def test_toggles_from_zero_to_zero_are_always_within_bounds(
+    brightness_steps: list[int], current_power: int, target_brightness: int
+) -> None:
+    """Test that the number of toggles is always valid."""
+    logic = StepDimmerLogic(brightness_steps)
+    toggles = logic.get_toggles_for_brightness(current_power, target_brightness)
+    assert toggles == 0
+
+
+@given(
+    brightness_steps=st.lists(
+        st.integers(min_value=1), min_size=1, max_size=10, unique=True
+    ).map(sorted),
+    current_power=st.integers(min_value=1),
+    target_brightness=st.integers(min_value=1),
+)
+def test_toggles_for_brightness_change_are_always_within_bounds(
     brightness_steps: list[int], current_power: int, target_brightness: int
 ) -> None:
     """Test that the number of toggles is always valid."""
     logic = StepDimmerLogic(brightness_steps)
     toggles = logic.get_toggles_for_brightness(current_power, target_brightness)
     assert toggles >= 0
+    assert toggles % 2 == 0
+
+
+@given(
+    brightness_steps=st.lists(
+        st.integers(min_value=1), min_size=1, max_size=10, unique=True
+    ).map(sorted),
+    current_power=st.integers(min_value=1),
+    target_brightness=st.integers(max_value=0),
+)
+def test_toggles_turn_off_are_always_within_bounds(
+    brightness_steps: list[int], current_power: int, target_brightness: int
+) -> None:
+    """Test that the number of toggles is always valid."""
+    logic = StepDimmerLogic(brightness_steps)
+    toggles = logic.get_toggles_for_brightness(current_power, target_brightness)
+    assert toggles == 1
 
 
 @given(
