@@ -1,28 +1,50 @@
+"""Property-based tests for the core logic."""
+
 from hypothesis import given
-from hypothesis.strategies import integers
+from hypothesis import strategies as st
 
-from custom_components.virtual_devices.const import LIGHT_BRIGHTNESS_MAX
-
-
-# Placeholder for the future StepDimmerLogic class
-class StepDimmerLogic:
-    def __init__(self, initial_brightness: int = 0) -> None:
-        self.set_brightness(initial_brightness)
-
-    @property
-    def brightness(self) -> int:
-        return self._brightness
-
-    def set_brightness(self, value: int) -> None:
-        self._brightness = max(0, min(LIGHT_BRIGHTNESS_MAX, value))
+from custom_components.virtual_step_dimmer.logic import StepDimmerLogic
 
 
-@given(initial_brightness=integers(), new_brightness=integers())
-def test_brightness_is_always_within_bounds(
-    initial_brightness: int, new_brightness: int
+@given(
+    brightness_steps=st.lists(
+        st.integers(min_value=1), min_size=1, max_size=10, unique=True
+    ).map(sorted),
+    current_power=st.integers(),
+    target_brightness=st.integers(),
+)
+def test_toggles_are_always_within_bounds(
+    brightness_steps: list[int], current_power: int, target_brightness: int
 ) -> None:
-    """Test that brightness stays within the 0-255 range."""
-    logic = StepDimmerLogic(initial_brightness)
-    assert 0 <= logic.brightness <= LIGHT_BRIGHTNESS_MAX
-    logic.set_brightness(new_brightness)
-    assert 0 <= logic.brightness <= LIGHT_BRIGHTNESS_MAX
+    """Test that the number of toggles is always valid."""
+    logic = StepDimmerLogic(brightness_steps)
+    toggles = logic.get_toggles_for_brightness(current_power, target_brightness)
+    assert 0 <= toggles <= logic._num_steps
+
+
+@given(
+    brightness_steps=st.lists(
+        st.integers(min_value=1), min_size=1, max_size=10, unique=True
+    ).map(sorted),
+    power=st.integers(),
+)
+def test_power_to_step_within_bounds(brightness_steps: list[int], power: int) -> None:
+    """Test that power values always map to a valid step."""
+    logic = StepDimmerLogic(brightness_steps)
+    step = logic._power_to_step(power)
+    assert 0 <= step <= logic._num_steps
+
+
+@given(
+    brightness_steps=st.lists(
+        st.integers(min_value=1, max_value=10000), min_size=1, max_size=10, unique=True
+    ).map(sorted),
+    brightness=st.integers(),
+)
+def test_brightness_to_step_within_bounds(
+    brightness_steps: list[int], brightness: int
+) -> None:
+    """Test that brightness values always map to a valid step."""
+    logic = StepDimmerLogic(brightness_steps)
+    step = logic._brightness_to_step(brightness)
+    assert 0 <= step <= logic._num_steps
