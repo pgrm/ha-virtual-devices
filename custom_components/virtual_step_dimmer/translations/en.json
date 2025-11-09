@@ -1,0 +1,24 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Virtual Step-Dimmer",
+        "description": "Select the switch and sensor entities to use for the virtual step-dimmer.",
+        "data": {
+          "switch_entity": "Switch Entity",
+          "sensor_entity": "Sensor Entity"
+        }
+      },
+      "brightness": {
+        "title": "Configure Brightness Steps",
+        "description": "Enter a comma-separated list of power sensor values (in watts) that correspond to each brightness step. For example: 10, 25, 50, 100",
+        "data": {
+          "brightness_steps": "Brightness Steps (W)"
+        }
+      }
+    },
+    "error": {
+      "invalid_brightness_steps": "Invalid input. Please provide a comma-separated list of positive numbers (e.g., 10, 25, 50)."
+    }
+  }
+}
