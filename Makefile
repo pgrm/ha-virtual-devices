@@ -19,7 +19,7 @@ lint-check:
 	poetry run ruff check .
 
 test:
-	poetry run pytest --cov=custom_components.virtual_devices --cov-branch --cov-fail-under=90 --cov-report=term --cov-report=xml tests/
+	poetry run pytest --cov=custom_components --cov-branch --cov-fail-under=90 --cov-report=term --cov-report=xml tests/
 
 json-check:
 	find . -name "*.json" -not -path "./.git/*" -not -path "./.venv/*" -exec python -m json.tool {} >/dev/null \;

@@ -1,6 +1,6 @@
 {
-  "domain": "virtual_devices",
-  "name": "Virtual Devices",
+  "domain": "virtual_step_dimmer",
+  "name": "Virtual Step-Dimmer",
   "version": "0.1.0",
   "documentation": "https://github.com/ha-virtual-devices/ha-virtual-devices",
   "issue_tracker": "https://github.com/ha-virtual-devices/ha-virtual-devices/issues",

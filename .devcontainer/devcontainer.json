@@ -1,6 +1,6 @@
 {
   "name": "Home Assistant Dev",
-  "image": "ghcr.io/home-assistant/devcontainer:stable",
+  "image": "ghcr.io/home-assistant/devcontainer:addons",
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/ha-virtual-devices,type=bind",
   "workspaceFolder": "/workspaces/ha-virtual-devices",
   "forwardPorts": [
@@ -18,5 +18,5 @@
       ]
     }
   },
-  "postCreateCommand": "mkdir -p /config/custom_components && ln -sf ${containerWorkspaceFolder}/custom_components/virtual_devices /config/custom_components/virtual_devices && make setup"
+  "postCreateCommand": "mkdir -p /config/custom_components && ln -sf ${containerWorkspaceFolder}/custom_components/virtual_step_dimmer /config/custom_components/virtual_step_dimmer && make setup"
 }
